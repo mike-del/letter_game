@@ -1,20 +1,20 @@
-import random
 import os
+import random
 import sys
 
 # make a list of words
 words = [
-    'apple',
-    'banana',
-    'orange',
-    'coconut',
-    'strawberry',
-    'lime',
-    'grapefruit',
-    'lemon',
-    'kumquat',
-    'blueberry',
-    'melon'
+'apple',
+'banana',
+'orange',
+'coconut',
+'strawberry',
+'lime',
+'grapefruit',
+'lemon',
+'kumquat',
+'blueberry',
+'melon'
 ]
 
 def clear():
@@ -41,7 +41,7 @@ def draw(bad_guesses, good_guesses, secret_word):
             print('_', end='')
 
     print('')
-    
+
 def get_guess(bad_guesses, good_guesses):
     while True:
         guess = input("Guess a letter: ").lower()
@@ -56,32 +56,32 @@ def get_guess(bad_guesses, good_guesses):
             return guess
 
 def play(done):
-   clear()
-   secret_word = random.choice(words)
-   bad_guesses = []
-   good_guesses = []
+    clear()
+    secret_word = random.choice(words)
+    bad_guesses = []
+    good_guesses = []
 
-   while True:
-       draw(bad_guesses, good_guesses, secret_word)
-       guess = get_guess(bad_guesses, good_guesses)
+    while True:
+        draw(bad_guesses, good_guesses, secret_word)
+        guess = get_guess(bad_guesses, good_guesses)
 
-       if guess in secret_word:
-           good_guesses.append(guess)
-           found = True
-           for letter in secret_word:
-               if letter not in good_guesses:
-                   found = False
-           if found:
-               print("You win!!!")
-               print("The secret word was {}".format(secret_word))
-               done = True
-       else:
-        bad_guesses.append(guess)
-        if len(bad_guesses) == 7:
-            draw(bad_guesses, good_guesses, secret_word)
-            print("You lost!")
-            print("The secret word was {}".format(secret_word))
-            done = True
+        if guess in secret_word:
+            good_guesses.append(guess)
+            found = True
+            for letter in secret_word:
+                if letter not in good_guesses:
+                    found = False
+            if found:
+                print("You win!!!")
+                print("The secret word was {} ".format(secret_word))
+                done = True
+        else:
+            bad_guesses.append(guess)
+            if len(bad_guesses) == 7:
+                draw(bad_guesses, good_guesses, secret_word)
+                print("You lost!")
+                print("The secret word was {}".format(secret_word))
+                done = True
 
         if done:
             play_again = input("Play again? Y/n ").lower()
